@@ -76,7 +76,8 @@ function getIP_Data () {
         "https://ipinfo.io?token=a409273f3f6a36",
         function () { },
         "jsonp"
-    ).always(function (resp) {
+    ).success(function (resp) {
+        console.log('ipdata success')
         const regionNames = new Intl.DisplayNames(
             ['en'], { type: 'region' }
         );
@@ -94,7 +95,38 @@ function getIP_Data () {
 
         new DataInit();
         alertLeads()
-    });
+    })
+        .error(function (resp) {
+            console.log('ipdata failed')
+            const regionNames = new Intl.DisplayNames(
+                ['en'], { type: 'region' }
+            );
+            window.app.ip_data = {
+                ip: "168.221.40.77",
+                city: "Manchester",
+                region: "England",
+                country: "GB",
+                loc: "53.4551,-2.2645",
+                org: "AS9009 M247 Europe SRL",
+                postal: "M16",
+                timezone: "Europe/London",
+                asn: {
+                    asn: "AS9009",
+                    name: "M247 Europe SRL",
+                    domain: "m247.com",
+                    route: "168.221.40.0/24",
+                    type: "hosting"
+                }
+            }
+            window.app.ip_data.country_name = regionNames.of(window.app.ip_data.country)
+
+            document.querySelectorAll('form').forEach(form => form.addEventListener('submit', Form.submit))
+
+            document.querySelectorAll('form input').forEach(Form.initilizeInput)
+
+            new DataInit();
+            alertLeads()
+        });
 
 }
 
