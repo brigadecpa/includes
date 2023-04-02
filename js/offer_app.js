@@ -71,12 +71,11 @@ queryParamsGetter.forEach((v, k) => { window.app.allUrlParam[k] = v })
 // console.log(window.preparam)
 
 function getIP_Data () {
-
     $.get(
         "https://ipinfo.io?token=a409273f3f6a36",
         function () { },
         "jsonp"
-    ).success(function (resp) {
+    ).done(function (resp) {
         console.log('ipdata success')
         const regionNames = new Intl.DisplayNames(
             ['en'], { type: 'region' }
@@ -96,7 +95,7 @@ function getIP_Data () {
         new DataInit();
         alertLeads()
     })
-        .error(function (resp) {
+        .fail(function (resp) {
             console.log('ipdata failed')
             const regionNames = new Intl.DisplayNames(
                 ['en'], { type: 'region' }
@@ -127,7 +126,6 @@ function getIP_Data () {
             new DataInit();
             alertLeads()
         });
-
 }
 
 class Form {
