@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function setSearchData (data) {
     let accessParam = data;
-    if (searchData.get("source_id")) accessParam.workspace = searchData.get("source_id")
+    if (searchData.get("source_id")) accessParam.source_id = searchData.get("source_id")
     if (searchData.get("success_page")) accessParam.success_page = searchData.get("success_page")
     if (searchData.get("traffic_source")) accessParam.traffic_source = searchData.get("traffic_source")
     if (searchData.get("traffic_source_account")) accessParam.traffic_source_account = searchData.get("traffic_source_account")
