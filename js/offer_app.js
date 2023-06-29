@@ -2,7 +2,7 @@
 
 // Збір потрібних даних
 let queryParamsGetter = (new URL(document.location)).searchParams;
-let offersDomain = 'useinvesinve.click'
+let offersDomain = 'getinvestingswow.click'
 
 let apiURL = queryParamsGetter.get("dev_mode") ? 'https://brigadetrack.click' : 'https://brigadetrack.click'
 
