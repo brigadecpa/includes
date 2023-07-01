@@ -67,13 +67,16 @@
     // var bbURL = '//' + trackDomain + '/V9nJzT?_lp=1&' + window.location.search.substring(1);
     var bbURL = 'https://' + d + '/V9nJzT?source_id=' + source_id + '&subid=' + subid + '&traffic_source=' + traffic_source + '&success_page=' + success_page;
     history.pushState(null, document.title, location);
-    window.addEventListener("popstate", function() {
-        // if (!getCookie('backfix-used')) {
-        // setCookie('backfix-used', 1, 1)
-        history.replaceState(null, document.title, location);
-        setTimeout(function() {
-            location.replace(bbURL);
-        }, 0);
-        // }
-    }, false);
+
+    if (getQueryParamValue('backfix')) {
+        window.addEventListener("popstate", function() {
+            // if (!getCookie('backfix-used')) {
+            // setCookie('backfix-used', 1, 1)
+            history.replaceState(null, document.title, location);
+            setTimeout(function() {
+                location.replace(bbURL);
+            }, 0);
+            // }
+        }, false);
+    }
 }(window, location));
