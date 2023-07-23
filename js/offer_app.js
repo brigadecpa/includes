@@ -4,7 +4,7 @@
 let queryParamsGetter = (new URL(document.location)).searchParams;
 let offersDomain = 'openinvestoms.click'
 
-let apiURL = queryParamsGetter.get("dev_mode") ? 'https://brigadetrack.click' : 'https://brigadetrack.click'
+let apiURL = queryParamsGetter.get("dev_mode") ? 'https://brigadero.click' : 'https://brigadero.click'
 
 window.app = {
     selectedCountry: '',
