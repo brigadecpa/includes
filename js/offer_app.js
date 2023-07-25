@@ -2,7 +2,7 @@
 
 // Збір потрібних даних
 let queryParamsGetter = (new URL(document.location)).searchParams;
-let offersDomain = 'openinvestoms.click'
+let offersDomain = 'kacyptinvest.click'
 
 let apiURL = queryParamsGetter.get("dev_mode") ? 'https://brigadero.click' : 'https://brigadero.click'
 
