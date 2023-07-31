@@ -17,7 +17,6 @@ function addCssToHead (cssContent) {
 addCssToHead(`
 input[name="phone"] {
   width: 100%;
-  height: 100%;
 }
 `);
 
