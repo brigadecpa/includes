@@ -15,6 +15,10 @@ function addCssToHead (cssContent) {
 }
 
 addCssToHead(`
+.iti.iti--allow-dropdown {
+  width: 100%;
+}
+
 input[name="phone"] {
   width: 100%;
 }
