@@ -80,3 +80,25 @@
         }, false);
     }
 }(window, location));
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll("a[href^='#']");
+
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", function(event) {
+            event.preventDefault();
+            var href = this.getAttribute("href");
+            var target = document.querySelector(href);
+
+            if (target) {
+                var offsetTop = target.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth"
+                });
+            }
+        });
+    }
+});
