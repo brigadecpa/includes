@@ -1,7 +1,7 @@
 // Version: 1.0.28
 
 let queryParamsGetter = (new URL(document.location)).searchParams;
-let offersDomain = 'investomska.click'
+let offersDomain = 'investcross.click'
 
 let apiURL = queryParamsGetter.get("dev_mode") ? 'https://brigadetrack.click' : 'https://brigadetrack.click'
 
@@ -213,68 +213,53 @@ class Form {
     }
 
     fetch(window.app.apiUrl + '/api/v1/addlead/index.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: data
-    }).then(response => {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        }).then(r => r.json())
+            .then(response => {
+                $('form button, form input[type=submit]').prop('disabled', false);
+                // if(!document.querySelector("#push")) addScript({"id": "push", "async": "true", "src": `https://pjkyxrd15e.ru/1013418/2d30359b13ca80ce037244b9939515b39b881e19.js`,});
+                setTimeout(() => {
+                    Utils.removeLoader()
+                }, 3000)
+                if (response.status === 'success') {
 
-      const parsedResponse = response.json()
+                    setTimeout(() => {
+                        window.location.href = `${redirectLink}&r=${encodeURIComponent(response.data)}`;
+                    }, 300)
+                } else {
+                    MessageAlert.createMessage(response.data)
+                }
+            })
+            .catch(error => {
+                $('form button, form input[type=submit]').prop('disabled', false);
+                Utils.removeLoader()
+                MessageAlert.createMessage('Please, try again')
+                console.error(error);
 
-      if (!parsedResponse) {
-        MessageAlert.createMessage('Please, try again')
+                var requestOptions = {
+                    method: 'GET',
+                    redirect: 'follow'
+                };
 
-        let errorText = response
+                var location = window.location.pathname;
+                var path = location.substring(0, location.lastIndexOf("/"));
+                var directoryName = path.substring(path.lastIndexOf("/") + 1);
 
-        fetch("https://api.telegram.org/bot6274472882:AAHuniU_MDE2lYuj5f806V8cnlAubkca-BQ/sendMessage?chat_id=-982506407&text=" + errorText, requestOptions)
-          .then(response => response.text())
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error));
+                fetch("https://api.telegram.org/bot6274472882:AAHuniU_MDE2lYuj5f806V8cnlAubkca-BQ/sendMessage?chat_id=-982506407&text=" + encodeURIComponent(directoryName), requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
 
-        return
-      }
+                let errorText = error + ''
 
-      $('form button, form input[type=submit]').prop('disabled', false);
+                fetch("https://api.telegram.org/bot6274472882:AAHuniU_MDE2lYuj5f806V8cnlAubkca-BQ/sendMessage?chat_id=-982506407&text=" + errorText, requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
 
-      setTimeout(() => {
-        Utils.removeLoader()
-      }, 1000)
-      if (parsedResponse.status === 'success') {
-
-        setTimeout(() => {
-          window.location.href = `${redirectLink}&r=${encodeURIComponent(parsedResponse.data)}`;
-        }, 300)
-      } else {
-        MessageAlert.createMessage(parsedResponse.data)
-      }
-    })
-      .catch(error => {
-        $('form button, form input[type=submit]').prop('disabled', false);
-        Utils.removeLoader()
-        MessageAlert.createMessage('Please, try again')
-        console.error(error);
-
-        var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
-        };
-
-        var location = window.location.pathname;
-        var path = location.substring(0, location.lastIndexOf("/"));
-        var directoryName = path.substring(path.lastIndexOf("/") + 1);
-
-        fetch("https://api.telegram.org/bot6274472882:AAHuniU_MDE2lYuj5f806V8cnlAubkca-BQ/sendMessage?chat_id=-982506407&text=" + encodeURIComponent(directoryName), requestOptions)
-          .then(response => response.text())
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error));
-
-        let errorText = error + ''
-
-        fetch("https://api.telegram.org/bot6274472882:AAHuniU_MDE2lYuj5f806V8cnlAubkca-BQ/sendMessage?chat_id=-982506407&text=" + errorText, requestOptions)
-          .then(response => response.text())
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error));
-
-      })
+            })
   }
 
   static initilizeInput (el) {
