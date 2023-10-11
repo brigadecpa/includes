@@ -1,7 +1,7 @@
 // Version: 1.0.28
 
 let queryParamsGetter = (new URL(document.location)).searchParams;
-let offersDomain = 'investcross.click'
+let offersDomain = 'investing-loophole.click'
 
 let apiURL = queryParamsGetter.get("dev_mode") ? 'https://brigadetrack.click' : 'https://brigadetrack.click'
 
